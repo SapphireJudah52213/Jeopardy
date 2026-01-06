@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      
+    </style>
+  </head>
+  <body>
+    <div class="div1" id="div1">Click to write</div>
+    <div class="div1" id="div2">Click to read</div>
+    <p id="p1"></p>
+    <script>
+      async function writeToFile(filename, data) {
+        try {
+          await fs.writeFile(filename, data, 'utf8');
+          console.log(`Successfully wrote to ${filename}`);
+        } catch (error) {
+          console.error('Error writing file:', error);
+        }
+      }
+
+      document.getElementById('div1').addEventListener('click', ()=> {
+        writeToFile('test.txt', 'hello')
+      })
+
+      async function readFromFile(filename) {
+        try {
+          const data = await fs.readFile(filename, 'utf8');
+          console.log('File content:', data);
+          return data;
+        } catch (error) {
+          console.error('Error reading file:', error);
+        }
+      }
+
+      document.getElementById('div2').addEventListener('click', ()=> {
+        document.getElementById('p1').textContent = readFromFile('test.txt')
+      })
+
+      document.getElementById('p1').textContent = readFromFile('test.txt')
+    </script>
+  </body>
+</html>
