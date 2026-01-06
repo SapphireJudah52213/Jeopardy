@@ -10,6 +10,7 @@
     <div class="div1" id="div2">Click to read</div>
     <p id="p1"></p>
     <script>
+      const fs = require('fs').promises;
       async function writeToFile(filename, data) {
         try {
           await fs.writeFile(filename, data, 'utf8');
